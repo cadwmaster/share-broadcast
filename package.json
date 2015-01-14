@@ -8,6 +8,7 @@
     "good-console": "^4.1.0",
     "grunt": "^0.4.5",
     "hapi": "^8.1.0",
+    "joi": "^5.1.0",
     "should": "^4.5.2"
   },
   "devDependencies": {

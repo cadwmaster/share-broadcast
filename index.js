@@ -1,24 +1,11 @@
 var Hapi = require('hapi');
 var Good = require('good');
+var routes = require('./routes');
 
 var server = new Hapi.Server();
 server.connection({ port: 3000 });
 
-server.route({
-	method: 'GET',
-	path: '/',
-	handler: function (request, reply) {
-		reply('Hello, world!');
-	}
-});
-
-server.route({
-	method: 'GET',
-	path: '/{name}',
-	handler: function (request, reply) {
-		reply('Hello, ' + encodeURIComponent(request.params.name) + '!');
-	}
-});
+server.route(routes);
 
 server.register({
 	register: Good,
@@ -37,3 +24,5 @@ server.register({
 		server.log('info', 'Server running at: ' + server.info.uri);
 	});
 });
+
+console.log(server.table());
