@@ -1,0 +1,10 @@
+{
+	"server": {
+		"port": 9030
+	},
+
+	"session": {
+		"proxy": false,
+		"expires": 600
+	}
+}

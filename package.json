@@ -4,12 +4,18 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "bluebird": "^2.9.12",
+    "boom": "^2.6.1",
+    "bucker": "^2.0.0-alpha7",
+    "convict": "^0.6.1",
     "good": "^5.1.1",
     "good-console": "^4.1.0",
     "grunt": "^0.4.5",
     "hapi": "^8.1.0",
     "joi": "^5.1.0",
-    "should": "^4.5.2"
+    "mongoose": "^4.0.0-rc2",
+    "should": "^4.5.2",
+    "ytdl": "^0.3.5"
   },
   "devDependencies": {
     "mocha": "^2.1.0"

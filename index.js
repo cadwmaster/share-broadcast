@@ -1,28 +1,39 @@
 var Hapi = require('hapi');
 var Good = require('good');
 var routes = require('./routes');
+var options = require('./config/' ).get();
+var Storage = require('./initializers/storage');
+var Promise = require('bluebird');
+var server;
 
-var server = new Hapi.Server();
-server.connection({ port: 3000 });
-
+server = new Hapi.Server();
+server.connection({ port: options.http.port });
 server.route(routes);
 
-server.register({
-	register: Good,
-	options: {
-		reporters: [{
-			reporter: require('good-console'),
-			args:[{ log: '*', response: '*' }]
-		}]
-	}
-}, function (err) {
-	if (err) {
-		throw err; // something bad happened loading the plugin
-	}
+Storage.init()
+	.then(function () {
+		return new Promise(function(resolve, reject) {
+			server.register({
+				register: Good,
+				options: {
+					reporters: [{
+						reporter: require('good-console'),
+						args:[{ log: '*', response: '*' }]
+					}]
+				}
+			}, function (err) {
+				if (err) {
+					reject(err);
+					throw err; // something bad happened loading the plugin
+				}
+				resolve();
+			});
 
-	server.start(function () {
-		server.log('info', 'Server running at: ' + server.info.uri);
-	});
-});
-
-console.log(server.table());
+		});
+	})
+	.then(function() {
+		server.start(function () {
+			server.log('info', 'Server running at: ' + server.info.uri);
+		});
+	})
+;

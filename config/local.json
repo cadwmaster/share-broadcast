@@ -1,0 +1,13 @@
+{
+    "logger": {
+        "level": "trace"
+    },
+
+    "http": {
+        "port": 3000,
+        "authRoutes": {
+
+        },
+	    "publicFolder": "public"
+    }
+}

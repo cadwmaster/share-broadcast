@@ -24,5 +24,19 @@ module.exports = [
 			}
 		}
 
+	},
+	{
+		method: 'GET',
+		path: '/playlist/{id}',
+		config: {
+			handler: controllers.playlist.getPlaylist,
+			cache: { expiresIn: 5 * 60 * 1000 },
+			validate: {
+				params: {
+					id: Joi.string().min(3).max(20)
+				}
+			}
+		}
 	}
+
 ];

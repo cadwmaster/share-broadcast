@@ -1,0 +1,12 @@
+{
+    "logger": {
+        "level": "trace"
+    },
+
+    "http": {
+        "port": 9911,
+        "authRoutes": {
+
+        }
+    }
+}
